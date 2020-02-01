@@ -1,0 +1,5 @@
+node_modules/
+bin/
+.history/
+trace.json
+bucket-creds.json

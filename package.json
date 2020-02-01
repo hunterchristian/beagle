@@ -1,0 +1,43 @@
+{
+  "name": "@hunterhod/beagle",
+  "version": "1.0.4",
+  "description": "Programmatically read performance metrics using Puppeteer",
+  "main": "src/index.js",
+  "bin": {
+    "beagle": "bin/beagle"
+  },
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "jest",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "check-format": "prettier --check 'src/**/*.js'",
+    "build": "npm run format",
+    "release": "rm -rf bin && mkdir bin && cd bin && pkg ../src/index.js --targets node10 --output beagle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hunterchristian/beagle.git"
+  },
+  "keywords": [
+    "performance",
+    "measure",
+    "puppeteer",
+    "paint",
+    "timing"
+  ],
+  "author": "Hunter Hodnett",
+  "bugs": {
+    "url": "https://github.com/hunterchristian/beagle/issues"
+  },
+  "homepage": "https://github.com/hunterchristian/beagle#readme",
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "^1.19.1",
+    "puppeteer": "^1.19.0",
+    "yargs": "^15.1.0"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "pkg": "^4.4.2"
+  }
+}

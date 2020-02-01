@@ -1,0 +1,177 @@
+const getPaintEventsFromTrace = require('./getPaintEventsFromTrace');
+
+const mockTraceEvents = [
+  {
+    pid: 33113,
+    tid: 27395,
+    ts: 312132834451,
+    ph: 'X',
+    cat: 'toplevel',
+    name: 'ThreadControllerImpl::RunTask',
+    dur: 374,
+    tdur: 70,
+    tts: 23593,
+    args: {},
+  },
+  {
+    pid: 33116,
+    tid: 775,
+    ts: 312133479621,
+    ph: 'R',
+    cat: 'loading,rail,devtools.timeline',
+    name: 'firstPaint',
+    tts: 159220,
+    args: {
+      frame: '92AFCE20D270EC4B889A7F2342B33F4A',
+      data: { navigationId: '9D098AA921E2081FB85C85C0F0B1B5C6' },
+    },
+  },
+  {
+    pid: 33116,
+    tid: 775,
+    ts: 312133479621,
+    ph: 'R',
+    cat: 'loading,rail,devtools.timeline',
+    name: 'firstContentfulPaint',
+    tts: 159244,
+    args: {
+      frame: '92AFCE20D270EC4B889A7F2342B33F4A',
+      data: { navigationId: '9D098AA921E2081FB85C85C0F0B1B5C6' },
+    },
+  },
+  {
+    pid: 33116,
+    tid: 775,
+    ts: 312133479621,
+    ph: 'R',
+    cat: 'loading,rail,devtools.timeline',
+    name: 'firstMeaningfulPaintCandidate',
+    tts: 159262,
+    args: {
+      frame: '92AFCE20D270EC4B889A7F2342B33F4A',
+      data: { navigationId: '9D098AA921E2081FB85C85C0F0B1B5C6' },
+    },
+  },
+  {
+    pid: 33113,
+    tid: 27395,
+    ts: 312132834898,
+    ph: 'X',
+    cat: 'toplevel',
+    name: 'ThreadControllerImpl::RunTask',
+    dur: 2,
+    tdur: 2,
+    tts: 23736,
+    args: {},
+  },
+  {
+    pid: 33113,
+    tid: 27395,
+    ts: 312132835575,
+    ph: 'X',
+    cat: 'toplevel',
+    name: 'metrics.mojom.SingleSampleMetricsProvider',
+    dur: 27,
+    tdur: 27,
+    tts: 23762,
+    args: {},
+  },
+  {
+    pid: 33113,
+    tid: 27395,
+    ts: 312132835613,
+    ph: 'X',
+    cat: 'toplevel',
+    name: 'metrics.mojom.SingleSampleMetric',
+    dur: 6,
+    tdur: 6,
+    tts: 23800,
+    args: {},
+  },
+  {
+    pid: 33113,
+    tid: 27395,
+    ts: 312132835622,
+    ph: 'X',
+    cat: 'toplevel',
+    name: 'ThreadControllerImpl::RunTask',
+    dur: 3,
+    tdur: 2,
+    tts: 23809,
+    args: {},
+  },
+  {
+    pid: 33113,
+    tid: 27395,
+    ts: 312132835634,
+    ph: 'X',
+    cat: 'toplevel',
+    name: 'ThreadControllerImpl::RunTask',
+    dur: 2,
+    tdur: 2,
+    tts: 23821,
+    args: {},
+  },
+  {
+    pid: 33113,
+    tid: 27395,
+    ts: 312132835639,
+    ph: 'X',
+    cat: 'toplevel',
+    name: 'ThreadControllerImpl::RunTask',
+    dur: 2,
+    tdur: 2,
+    tts: 23826,
+    args: {},
+  },
+];
+
+const expectedPaintEvents = [
+  {
+    pid: 33116,
+    tid: 775,
+    ts: 312133479621,
+    ph: 'R',
+    cat: 'loading,rail,devtools.timeline',
+    name: 'firstPaint',
+    tts: 159220,
+    args: {
+      frame: '92AFCE20D270EC4B889A7F2342B33F4A',
+      data: { navigationId: '9D098AA921E2081FB85C85C0F0B1B5C6' },
+    },
+  },
+  {
+    pid: 33116,
+    tid: 775,
+    ts: 312133479621,
+    ph: 'R',
+    cat: 'loading,rail,devtools.timeline',
+    name: 'firstContentfulPaint',
+    tts: 159244,
+    args: {
+      frame: '92AFCE20D270EC4B889A7F2342B33F4A',
+      data: { navigationId: '9D098AA921E2081FB85C85C0F0B1B5C6' },
+    },
+  },
+  {
+    pid: 33116,
+    tid: 775,
+    ts: 312133479621,
+    ph: 'R',
+    cat: 'loading,rail,devtools.timeline',
+    name: 'firstMeaningfulPaintCandidate',
+    tts: 159262,
+    args: {
+      frame: '92AFCE20D270EC4B889A7F2342B33F4A',
+      data: { navigationId: '9D098AA921E2081FB85C85C0F0B1B5C6' },
+    },
+  },
+];
+
+describe('getPaintEventsFromTrace', () => {
+  it('should return paint events from an array of trace events', () => {
+    expect(getPaintEventsFromTrace(mockTraceEvents)).toStrictEqual(
+      expectedPaintEvents
+    );
+  });
+});
